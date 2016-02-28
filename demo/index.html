@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-ajax demo</title>
+</head>
+<body ng-app="myApp">
+    <input type="text" ng-model="postNum" ng-init="postNum = 1">
+
+    <h2>Demo of auto and debounce</h2>
+    <div>
+        <h2>Task: <span ng-if="isLoading">Is Loading</span></h2>
+        <p>{{response.data}}</p>
+        <p>{{error.statusText}}</p>
+    </div>
+
+    <ng-ajax-control auto
+                     debounce-duration="1000"
+                     loading="isLoading">
+        <ng-ajax method="GET"
+                 url="'http://jsonplaceholder.typicode.com/posts/' + postNum"
+                 params="{'q': postNum}"
+                 headers="{'Content-Type': application/x-www-form-urlencoded}"
+                 ajax-error="error"
+                 ajax-success="response">
+        </ng-ajax>
+    </ng-ajax-control>
+
+    <hr>
+    <section>
+        <h2>Demo of series control flow</h2>
+        <div>
+            <button ng-ajax-emit="post-and-get">Post And Get</button>
+            <h3>All Tasks: <span ng-if="isAnyLoading">Loading</span></h3>
+            <div>
+                <h3>POST: <span ng-if="isLoading1">Is Loading</span></h3>
+                <p>{{response1.data}}</p>
+                <p>{{error1.statusText}}</p>
+            </div>
+            <div>
+                <h3>GET: <span ng-if="isLoading2">Is Loading</span></h3>
+                <p>{{response2.data}}</p>
+                <p>{{error2.statusText}}</p>
+            </div>
+            <ng-ajax-control auto="false"
+                             on="post-and-get"
+                             loading="isAnyLoading"
+                             flow="series">
+                <ng-ajax method="POST"
+                         url="'http://jsonplaceholder.typicode.com/posts'"
+                         body="{title:'foo', id: 2}"
+                         loading="isLoading1"
+                         ajax-error="error1"
+                         ajax-success="response1">
+                </ng-ajax>
+                <ng-ajax method="GET"
+                         url="'http://jsonplaceholder.typicode.com/posts/' + (response1.data.id)"
+                         loading="isLoading2"
+                         ajax-error="error2"
+                         ajax-success="response2">
+                </ng-ajax>
+            </ng-ajax-control>
+
+
+        </div>
+    </section>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+    <script src="main.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
