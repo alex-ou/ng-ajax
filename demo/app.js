@@ -1,1 +1,1 @@
-var myApp = angular.module('myApp', ['ng-ajax-directives']);
+var myApp = angular.module('myApp', ['ngAjax']);

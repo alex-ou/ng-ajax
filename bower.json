@@ -1,0 +1,23 @@
+{
+  "name": "ng-ajax",
+  "description": "Easily make ajax requests in AngularJS",
+  "main": "./dist/ng-ajax.min.js",
+  "authors": [
+    "Alex Ou"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "ajax",
+    "async",
+    "control",
+    "flow"
+  ],
+  "homepage": "https://github.com/alex-ou/ng-ajax",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "demo",
+    "src"
+  ]
+}

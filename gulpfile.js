@@ -13,12 +13,11 @@ gulp.task('scripts', function() {
     return gulp.src('src/**/*.js')
         //.pipe(jshint('.jshintrc'))
         //.pipe(jshint.reporter('default'))
-        .pipe(concat('main.js'))
+        .pipe(concat('ng-ajax.js'))
         .pipe(gulp.dest('dist/'))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/'))
-        .pipe(reload);
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('clean', function() {
@@ -31,8 +30,8 @@ gulp.task('serve', function() {
             baseDir:['demo/', 'dist/']
         }
     });
-    gulp.watch('src/**/*.js', ['scripts']);
-    gulp.watch(['demo/*.html'], reload);
+    gulp.watch('src/**/*.js', ['scripts']).on('change', reload);
+    gulp.watch(['demo/*.html']).on('change', reload);
 });
 
 gulp.task('default', ['clean'], function() {

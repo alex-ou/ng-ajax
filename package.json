@@ -1,14 +1,14 @@
 {
   "name": "ng-ajax",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Alex Ou",
-  "license": "BSD",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/"
+    "url": "https://github.com/alex-ou/ng-ajax.git"
   },
-  "description": "Angular directives that enable you to make ajax calls by using HTML tags with great controls",
-  "main": "index.js",
+  "description": "Easily make ajax requests in AngularJS",
+  "main": "./dist/ng-ajax.min.js",
   "dependencies": {
   },
   "devDependencies": {

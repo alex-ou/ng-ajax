@@ -1,6 +1,6 @@
-angular.module('ng-ajax-directives', []);
+angular.module('ngAjax', []);
 
-angular.module('ng-ajax-directives')
+angular.module('ngAjax')
 
     .constant('ngAjaxFlow', {
         parallel: 'parallel',
@@ -234,7 +234,7 @@ angular.module('ng-ajax-directives')
             return defer.promise;
         };
 
-        $scope.$watch($attrs.url, function (newValue) {
+        $scope.$watchGroup([$attrs.url, $attrs.body], function (newValue) {
             ajaxControl.notifyOptionChanges();
         });
 
