@@ -2,5 +2,8 @@ language: node_js
 node_js:
   - "5.7"
 before_script:
-  - npm install -g gulp karma
-script: gulp
+  - npm install -g gulp
+  - gulp
+
+script:
+  - npm test

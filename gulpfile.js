@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     reload = browserSync.reload;
 
 
-gulp.task('scripts', function() {
+gulp.task('js', function() {
     return gulp.src('src/**/*.js')
         //.pipe(jshint('.jshintrc'))
         //.pipe(jshint.reporter('default'))
@@ -30,11 +30,11 @@ gulp.task('serve', function() {
             baseDir:['demo/', 'dist/']
         }
     });
-    gulp.watch('src/**/*.js', ['scripts']).on('change', reload);
+    gulp.watch('src/**/*.js', ['js']).on('change', reload);
     gulp.watch(['demo/*.html']).on('change', reload);
 });
 
-gulp.task('default', ['clean'], function() {
-    gulp.start( 'scripts');
+gulp.task('default', ['clean'], function () {
+    gulp.start('js');
 });
 
