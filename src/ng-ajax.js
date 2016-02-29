@@ -234,14 +234,16 @@ angular.module('ngAjax')
             return defer.promise;
         };
 
-        $scope.$watchGroup([$attrs.url, $attrs.body], function (newValue) {
+        function notify(){
             ajaxControl.notifyOptionChanges();
-        });
+        }
+
+        $scope.$watch($attrs.url, notify);
+
+        $scope.$watch($attrs.body, notify);
 
         if(method === GET_METHOD){
-            $scope.$watch($attrs.params, function (newValue) {
-                ajaxControl.notifyOptionChanges();
-            });
+            $scope.$watch($attrs.params, notify);
         }
     }])
 
