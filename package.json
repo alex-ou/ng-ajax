@@ -10,8 +10,10 @@
   "description": "Easily make ajax requests in AngularJS",
   "main": "./dist/ng-ajax.min.js",
   "dependencies": {
+    "angular": "^1.5.0"
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.0",
     "browser-sync": "^2.11.1",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
@@ -20,7 +22,13 @@
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.3",
-    "jshint": "^2.9.1"
+    "jasmine-core": "^2.4.1",
+    "jshint": "^2.9.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
