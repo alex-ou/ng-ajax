@@ -3,6 +3,11 @@ Easily make ajax requests in AngularJS
 
 ng-ajax provides straight-forward directives which enables you to perform AJAX calls without writing any javascript code, and with great controls.
 
+### Links
+- [Quick Examples](#quick-examples)
+- [Installations](#installations)
+- [Documentation](#documentation)
+
 # Quick Examples
 ```html
  <ng-ajax-control auto debounce-duration="1000">
@@ -89,4 +94,76 @@ angular.module("myApp", ["ngAjax"]);
     </ng-ajax>
 </ng-ajax-control>
 ```
+# Documentation
+Basic usage is as below, ng-ajax-control can have multiple ng-ajax children. ng-ajax can ran in `parallel` or `series` depending on the `flow` property.
+
+```html
+<ng-ajax-control flow="parallel|series">
+	<ng-ajax></ng-ajax>
+	<ng-ajax></ng-ajax>
+</ng-ajax-control>
+```
+
+## \<ng-ajax\> directive
+ng-ajax exposes $http functionality, supported properties:
+
+#### url : String
+The URL target of the request.
+
+#### method : String
+The HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.
+Default: 'GET'.
+
+#### params : Object
+An object that contains query parameters to be appended to the specified url when generating a request. If you wish to set the body content when making a POST request, you should use the body property instead.
+
+#### headers: Object
+HTTP request headers to send.
+Example: headers='{"Content-Type": "application/x-www-form-urlencoded"}'
+
+#### body: Object
+Body content to send with the request, typically used with "POST" requests.
+
+If Content-Type is set to a value listed below, then the body will be encoded accordingly.
+
+content-type="application/json"
+body is encoded like {"foo":"bar baz","x":1}
+content-type="application/x-www-form-urlencoded"
+body is encoded like foo=bar+baz&x=1
+
+#### loading
+Binding to a variable that indicates if the AJAX call is being performed asynchronously.
+Default: angular.noop
+
+#### ajax-response
+Binding to a variable that will be set to the response object when the AJAX call is successful (a response status code between 200 and 299)
+Default: angular.noop
+
+#### ajax-error
+Binding to a variable that will be set to the response object when the AJAX call is not successful
+Default: angular.noop
+
+## \<ng-ajax-control\> directive
+Controls the behaviors of the ng-ajax children, supported properties:
+#### auto : Boolean
+If `true`, automatically performs the Ajax request when either `url` or `params` changes.
+Default: `false`.
+
+#### debounce-duration : Number
+Length of time in milliseconds to debounce multiple automatically generated requests.
+
+#### loading
+Binding to a variable that indicates if any of the enclosed AJAX calls is being performed asynchronously.
+Default: angular.noop
+
+#### flow
+`parallel` or `series`, default is `parallel`.
+If `parallel`, runs the all the AJAX requests in parallel, without waiting until the previous function has completed. As soon as the flow kicks off, the `loading` is set to true, once all the AJAX requests have completed, `loading` is set to false.
+If `series`, run the AJAX requests in series, each one running once the previous one has completed. If any AJAX requests in the series pass fail, no more requests are run.
+
+
+
+
+
+
 
