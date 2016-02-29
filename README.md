@@ -104,6 +104,28 @@ Basic usage is as below, ng-ajax-control can have multiple ng-ajax children. ng-
 </ng-ajax-control>
 ```
 
+## \<ng-ajax-control\> directive
+Controls the behaviors of the ng-ajax children, supported properties:
+#### auto : Boolean
+If `true`, automatically performs the Ajax request when either `url` or `params` changes.
+Default: `false`.
+
+#### debounce-duration : Number
+Length of time in milliseconds to debounce multiple automatically generated requests.
+
+#### on: String
+Specify the event name to listen, once the event is received, run all the AJAX requests. See `ng-ajax-emit`.
+
+#### loading
+Binding to a variable that indicates if any of the enclosed AJAX calls is being performed asynchronously.
+Default: angular.noop
+
+#### flow
+`parallel` or `series`, default is `parallel`.
+If `parallel`, runs the all the AJAX requests in parallel, without waiting until the previous function has completed. As soon as the flow kicks off, the `loading` is set to true, once all the AJAX requests have completed, `loading` is set to false.
+If `series`, run the AJAX requests in series, each one running once the previous one has completed. If any AJAX requests in the series pass fail, no more requests are run.
+
+
 ## \<ng-ajax\> directive
 ng-ajax exposes $http functionality, supported properties:
 
@@ -143,25 +165,12 @@ Default: angular.noop
 Binding to a variable that will be set to the response object when the AJAX call is not successful
 Default: angular.noop
 
-## \<ng-ajax-control\> directive
-Controls the behaviors of the ng-ajax children, supported properties:
-#### auto : Boolean
-If `true`, automatically performs the Ajax request when either `url` or `params` changes.
-Default: `false`.
-
-#### debounce-duration : Number
-Length of time in milliseconds to debounce multiple automatically generated requests.
-
-#### loading
-Binding to a variable that indicates if any of the enclosed AJAX calls is being performed asynchronously.
-Default: angular.noop
-
-#### flow
-`parallel` or `series`, default is `parallel`.
-If `parallel`, runs the all the AJAX requests in parallel, without waiting until the previous function has completed. As soon as the flow kicks off, the `loading` is set to true, once all the AJAX requests have completed, `loading` is set to false.
-If `series`, run the AJAX requests in series, each one running once the previous one has completed. If any AJAX requests in the series pass fail, no more requests are run.
-
-
+## \<ng-ajax-emit\> directive
+Can only be used as an attribute, e.g.
+```html
+<button ng-ajax-emit='eventName'></button>
+```
+Listens to the click event of the attached element, and dispatches an event `eventName` through the $rootScope notifying the ng-ajax-control to run all the AJAX requests.
 
 
 
