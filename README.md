@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/alex-ou/ng-ajax.svg?branch=master)](https://travis-ci.org/alex-ou/ng-ajax)
+
 # ng-ajax
 
 Easily make ajax requests in AngularJS.
