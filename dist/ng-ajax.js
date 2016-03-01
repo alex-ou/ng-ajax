@@ -215,7 +215,6 @@ angular.module('ngAjax')
                     return JSON.stringify(data);
                 }
             };
-            console.log(config);
 
             if(method === GET_METHOD){
                 config.params = $scope.$eval($attrs.params);
